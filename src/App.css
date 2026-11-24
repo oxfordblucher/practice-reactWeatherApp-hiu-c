@@ -3,8 +3,16 @@
   flex-direction: column;
   width: fit-content;
   margin-inline: auto;
+  padding: 1rem 2rem;
+  row-gap: 1rem;
 
   button {
-    width: 25vw;
+    width: 20vw;
+    min-width: 75px;
   }
+}
+
+.city-forecast {
+  padding: 1rem 2rem;
+  margin-block: 300px;
 }

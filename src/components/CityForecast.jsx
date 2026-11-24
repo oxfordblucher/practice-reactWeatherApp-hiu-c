@@ -1,7 +1,15 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export default function CityForecast({selected}) {
   const [data, setData] = useState({})
+  const details = useRef();
+
+  const goToDetails = () => {
+    window.scrollTo({
+      top: details.current.offsetTop,
+      behavior: 'smooth'
+    })
+  }
 
   useEffect(() => {
     const fetchForecast = async () => {
@@ -21,10 +29,16 @@ export default function CityForecast({selected}) {
   }, [selected])
 
   return (
-    <div>
-      {Object.entries(data).map(([key, value]) => (
-        <p key={key}><span>{key}:</span><span>{value}</span></p>
-      ))}
-    </div>
+    <>
+      <div className="city-forecast">
+        <h2>Summary</h2>
+        <p>{data['summary']}</p>
+        <button onClick={() => goToDetails()}>View Details</button>
+      </div>
+      <div ref={details}>
+        <h2>Details</h2>
+        <p>{data['details']}</p>
+      </div>
+    </>
   )
 }
